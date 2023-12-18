@@ -43,16 +43,6 @@ class Api{
 
   static Future<http.StreamedResponse> fetchCreateProduct({required String name,required String ean,required double price,required
    double minPrice,required double maxPrice, XFile? image}) async{
-    Object body = {
-      "name": name,
-      "ean": ean,
-      "price": price.toString(),
-      "min_price": minPrice.toString(),
-      "max_price": maxPrice.toString(),
-      // if(image!=null)
-      //   "image": image
-    };
-    // print(image);
     var req = http.MultipartRequest("POST", Uri.parse(_apiUrl).addPath('/products/'));
     req.fields["name"] = name;
     req.fields["ean"] = ean;
@@ -63,16 +53,12 @@ class Api{
       req.files.add(await http.MultipartFile.fromPath("image", image.path, filename: image.name, contentType: MediaType("image", image.mimeType ?? "jpg")));
     }
     return await req.send();
-    // return http.post(
-    //   Uri.parse(_apiUrl).addPath('/products/'), headers: _baseHeaders, body: body
-    // );
   }
 }
 
 Future<List<Product>> getProducts() async{
   final response = await Api.fetchGetProducts();
   if (response.statusCode == 200){
-    print(response.body);
     return Product.fromRespose(convert.jsonDecode(response.body));
   } else { 
     throw Exception(response.body);
@@ -84,7 +70,6 @@ Future<List<Product>> getProducts() async{
 Future<List<Pricing>> getPricing(String ean) async{
   final response = await Api.fetchGetPricing(ean);
   if (response.statusCode == 200){
-    print(response.body);
     return Pricing.fromRespose(convert.jsonDecode(response.body));
   } else { 
     throw Exception(response.body);
@@ -94,7 +79,6 @@ Future<List<Pricing>> getPricing(String ean) async{
 Future<bool> addPricing(String ean, double price) async{
   final response = await Api.fetchAddPrice(ean, price);
   if (response.statusCode == 201){
-    print(response.body);
     return true;
   } else { 
     return false;
