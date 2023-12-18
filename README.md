@@ -46,6 +46,9 @@ yes "y" | flutter doctor --android-licenses
 flutter config --no-enable-linux-desktop --no-enable-macos-desktop --no-enable-windows-desktop
 ```
 
+## Rodando juntamente com a API
+Para executar a aplicação em um dispositivo na rede local, é necessário alterar a constante `_kLocalApiUrl` no arquivo `api.dart` para o IP local da sua máquina (rodando a aplicação Django).
+
 ## Implementação
 Foram criadas 3 telas. Listagem, visualização e criação de produtos.
 ### Listagem dos produtos
