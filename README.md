@@ -45,6 +45,7 @@ flutter config --no-analytics && flutter precache
 yes "y" | flutter doctor --android-licenses
 flutter config --no-enable-linux-desktop --no-enable-macos-desktop --no-enable-windows-desktop
 ```
+Atenção: Use apenas um dos métodos (docker ou nativo) na mesma pasta local. Caso seja gerado os arquivos de build em um ambiente, a build irá falhar no outro
 
 ## Rodando juntamente com a API
 Para executar a aplicação em um dispositivo na rede local, é necessário alterar a constante `_kLocalApiUrl` no arquivo `api.dart` para o IP local da sua máquina (rodando a aplicação Django).
