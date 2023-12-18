@@ -49,6 +49,10 @@ Atenção: Use apenas um dos métodos (docker ou nativo) na mesma pasta local. C
 
 ## Rodando juntamente com a API
 Para executar a aplicação em um dispositivo na rede local, é necessário alterar a constante `_kLocalApiUrl` no arquivo `api.dart` para o IP local da sua máquina (rodando a aplicação Django).
+Para conectar corretamente com a API, é preciso definir o IP para ouvir a interface de rede corretamente para dispositivos externos:
+```bash
+python manage.py runserver 0.0.0.0:8000
+```
 
 ## Implementação
 Foram criadas 3 telas. Listagem, visualização e criação de produtos.
